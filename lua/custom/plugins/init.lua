@@ -3,6 +3,7 @@
 --
 -- See the kickstart.nvim README for more information
 return { -- lazy.nvim
+  require 'themes',
   {
     'folke/noice.nvim',
     event = 'VeryLazy',
