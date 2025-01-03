@@ -54,6 +54,21 @@ return { -- lazy.nvim
     main = 'ibl',
     ---@module "ibl"
     ---@type ibl.config
-    opts = {},
+    opts = {
+      -- whitespace:{
+      --   highlight = { "IblWhitespace", "NonText" },
+      --   remove_blankline_trail = true,
+      -- },
+    },
+    config = function()
+      require('ibl').setup {}
+    end,
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+    -- use opts = {} for passing setup options
+    -- this is equivalent to setup({}) function
   },
 }
