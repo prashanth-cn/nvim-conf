@@ -3,7 +3,7 @@
 --
 -- See the kickstart.nvim README for more information
 return { -- lazy.nvim
-  require 'themes',
+  require 'custom.plugins.themes',
   {
     'folke/noice.nvim',
     event = 'VeryLazy',
@@ -52,18 +52,45 @@ return { -- lazy.nvim
   },
   {
     'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    ---@module "ibl"
-    ---@type ibl.config
-    opts = {
-      -- whitespace:{
-      --   highlight = { "IblWhitespace", "NonText" },
-      --   remove_blankline_trail = true,
-      -- },
-    },
-    config = function()
-      require('ibl').setup {}
+    event = 'VeryLazy',
+    opts = function()
+      -- Snacks.toggle({
+      --   name = "Indention Guides",
+      --   get = function()
+      --    return require("ibl.config").get_config(0).enabled
+      --   end,
+      --   set = function(state)
+      --     require("ibl").setup_buffer(0, { enabled = state })
+      --   end,
+      -- }):map("<leader>ug")
+      --
+      return {
+        indent = {
+          char = '│',
+          tab_char = '│',
+        },
+        scope = { show_start = false, show_end = false },
+        exclude = {
+          filetypes = {
+            'Trouble',
+            'alpha',
+            'dashboard',
+            'help',
+            'lazy',
+            'mason',
+            'neo-tree',
+            'notify',
+            'snacks_dashboard',
+            'snacks_notif',
+            'snacks_terminal',
+            'snacks_win',
+            'toggleterm',
+            'trouble',
+          },
+        },
+      }
     end,
+    main = 'ibl',
   },
   {
     'windwp/nvim-autopairs',
@@ -71,5 +98,9 @@ return { -- lazy.nvim
     config = true,
     -- use opts = {} for passing setup options
     -- this is equivalent to setup({}) function
+  },
+  {
+    'sphamba/smear-cursor.nvim',
+    opts = {},
   },
 }
