@@ -66,10 +66,20 @@ return { -- lazy.nvim
       --
       return {
         indent = {
-          char = '│',
-          tab_char = '│',
+          char = '▏',
+          tab_char = '→',
+          smart_indent_cap = true,
         },
-        scope = { show_start = false, show_end = false },
+        scope = {
+          enabled = true,
+          char = '▎', -- special character for scope lines
+          show_start = true,
+          show_end = true,
+          show_exact_scope = false,
+          injected_languages = true,
+          -- highlight = rainbow_highlights, -- use rainbow colors for scope
+          priority = 1024,
+        },
         exclude = {
           filetypes = {
             'Trouble',
