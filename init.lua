@@ -84,6 +84,9 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
+--PATHS
+vim.env.PATH = vim.env.PATH .. ':/usr/local/go/bin:' .. vim.fn.expand '$HOME/go/bin'
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -626,10 +629,23 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+
+        -- cmakelint = {},
+        -- cpplint = {},
+        -- cpptools = {},
+        -- css_lsp = {},
+        -- cssls = {},
+        -- cssmodules_ls = {},
+        -- emmet_language_server = {},
+        -- stylua = {},
+        -- ts_ls = {},
         -- clangd = {},
-        -- golangci_lint_ls = {},
+        -- gopls = {},
+        zls = {},
+        clangd = {},
+        gopls = {},
         -- pyright = {},
-        -- rust_analyzer = {},
+        rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -638,7 +654,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
-        ast_grep = {},
+        -- ast_grep = {},
 
         -- css_variables = {},
 
@@ -681,8 +697,8 @@ require('lazy').setup({
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
-        -- automatic_installation = {},
-        -- ensure_installed = true,
+        automatic_installation = true,
+        ensure_installed = ensure_installed,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
